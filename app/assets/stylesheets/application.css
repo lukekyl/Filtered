@@ -12,4 +12,67 @@
  *
  *= require_tree .
  *= require_self
+ *= require foundation_and_overrides
+
  */
+
+.navigation {
+    background-color: rgba(255, 255, 255, 1.0);
+    border-bottom: solid lightsalmon 1px;
+    margin-bottom: 20px;
+    box-shadow: 0px 0px 50px -10px #000000;
+}
+
+.menu {
+    background-color: rgba(0,0,0,.0)  !important;
+}
+
+.app-content {
+    margin-top:20px;
+    padding:20px;
+    border: solid lightsalmon 1px;
+    background-color: rgba(255, 255, 255, 1.0);
+    box-shadow: 0px 0px 50px -10px #000000;
+}
+
+.app-background {
+    background-image: url("https://image.freepik.com/free-photo/hot-espresso-coffee-bean-white-table_41050-2106.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: lightsteelblue;
+}
+
+.footer {
+    padding: 20px;
+    color: #000;
+}
+
+
+.errors {
+    padding: 20px;
+    font-weight:bolder;
+    border: solid lightsteelblue 1px;
+}
+.red {
+    color: red;
+}
+.green {
+    color: green;
+}
+
+.button.success {
+    background-color: white;
+    border: solid lightsalmon 1px;
+    border-radius: 4px;
+    font-size: medium;
+}
+.button.success:hover {
+    background-color: salmon;
+    color: white;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+    color: salmon;
+    text-shadow: 0px 0px 1px #000000;;
+}

@@ -1,15 +1,57 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>RailsPortfolioProject</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title><%= content_for?(:title) ? yield(:title) : "Filtered - For Coffee Lovers" %></title>
+
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="grid-container full app-background">
+    
+    <div class="grid-x top-bar navigation" style="height:60px;">
+      <div class="cell small-10">
+        <ul class="menu">
+          <li><%= link_to "Home", root_path if !user_signed_in? %></li>
+          <li><%= link_to "Home", users_path if user_signed_in? %></li>
+          <li><%= link_to "Sign In", new_user_session_path if !user_signed_in? %>
+          <li><%= link_to "Your Profile", user_path(current_user) if user_signed_in? %>
+          <li><%= link_to "Review New Coffee", new_coffeee_path if user_signed_in? %>
+          <li><%= link_to "View All Coffees", coffeees_path if user_signed_in? %>
+        </ul>
+      </div>
+      <div class="cell small-2">
+        <ul class="menu align-right">
+          <li><%= link_to "Sign Up", new_user_registration_path if !user_signed_in? %></li>
+          <%= link_to "Sign out", destroy_user_session_path, :method => :delete if user_signed_in? %>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="grid-x">
+      <div class="cell small-3"></div>
+      <div class="cell auto app-content" style="min-height: 700px">
+      <% if !flash.empty? %>
+      <div class="grid-x errors">
+        <div class="float-center text-center">
+        <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: name %>
+        <% end -%>
+        </div>
+      </div>
+    <%end%>
+      <%= yield %>
+      </div>
+      <div class="cell small-3"></div>
+    </div>
+    <div class="grid-x footer">
+      <div class="float-center text-center">
+        <h6><strong>Filtered © 2020</strong></h6>
+      </div>
+    </div>
   </body>
 </html>

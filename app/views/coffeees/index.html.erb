@@ -1,0 +1,21 @@
+<div class="float-center text-center">
+<div class="cell">
+<h2>Recent Reviews:</h2>
+</div>
+
+<div class="cell">
+    <ul>
+        <% @coffeees.each do |c| %>
+            <li>
+                <%= link_to c.name, coffeee_path(c) %><br>
+                <%= c.reviews.count %> Reviews
+            </li>
+        <% end %>
+    </ul>
+</div>
+<br><br>
+
+<div class="cell">
+<%= link_to "Back to Home", users_path %>
+</div>
+</div>

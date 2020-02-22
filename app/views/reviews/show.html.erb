@@ -1,0 +1,31 @@
+
+<div class="float-center text-center">
+<div class="cell">
+<h2><%= @coffeee.name %></h2>
+<h5><%= @coffeee.brand.name %></h5>
+</div>
+
+<div class="cell">
+ <%# Coffee Info %>
+<p><%= @coffeee.category %></p>
+<p><%= @coffeee.roast %></p>
+<p><%= @coffeee.body %></p>
+<p><%= @coffeee.acidity %></p>
+<br><br>
+<%# Coffee Reviews %>
+<h5><%= User.find(@review.user_id).username %>'s Review</h5>
+<p><strong><%= @review.rating %> Stars</strong></p>
+<p>Style: <%= @review.style %></p>
+<p>Recipe: <%= @review.recipe %></p>
+<p>Addatives: <%= @review.addatives %></p>
+<p>Details: <%= @review.details %></p>
+</div>
+<br>
+<div class="cell">
+<%= link_to "Back to Coffee", coffeee_path(@coffeee) %>
+</div>
+<br><br>
+<div class="cell">
+<%= link_to "Back to Home", users_path %>
+</div>
+</div>

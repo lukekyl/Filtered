@@ -1,0 +1,24 @@
+
+<div class="float-center text-center">
+<div class="cell">
+<h2><%= @user.username %>'s Profile</h2>
+
+</div>
+
+<div class="cell">
+<%# Favorite Coffee? %>
+
+ <%# Coffee Review Info %>
+ <h5>Your Recent Reviews:</h5>
+ <ul>
+ <% @user.reviews.each do |review| %>
+    <li><%= link_to Coffeee.find(review.coffeee_id).name, coffeee_review_path(review.coffeee_id, review) %></li>
+ <%end%>
+ </ul>
+</div>
+<br><br>
+
+<div class="cell">
+<%= link_to "Back to Home", users_path %>
+</div>
+</div>

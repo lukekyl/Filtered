@@ -1,0 +1,38 @@
+<div class="float-center text-center">
+<div class="cell">
+<h1>Hello <%= @user.username %></h1>
+
+</div>
+
+<div class="cell">
+<%# Favorite Coffee? %>
+
+ <%# Coffee Review Info %>
+ <p><%= link_to "Clear Filters", users_path %></p>
+  <%= form_tag("/search", method: "post", :enforce_utf8 => false) do %>
+    <label>Category</label>
+    <%= select_tag "category", options_for_select(["Arabica", "Robusta", "Liberica", "Excelsa"]), include_blank: true %>
+    <label>Roast</label>
+    <%= select_tag "roast", options_for_select(["Light", "Medium", "Dark"]), include_blank: true %>
+    <label>Body</label>
+    <%= select_tag "body", options_for_select(["Medium", "Mid", "Full"]), include_blank: true %>
+    <label>Acidity</label>
+    <%= select_tag "acidity", options_for_select(["Low", "Medium", "High"]), include_blank: true %>
+    <%= submit_tag "Filter" %>
+  <% end %>
+</div><br>
+<div class="cell">
+<h3>Coffee Reviews:</h3>
+ <ul>
+ <% @reviews.each do |review| %>
+    <li><%= link_to Coffeee.find(review.coffeee_id).name, coffeee_review_path(review.coffeee_id, review) %><br>
+        By <%= User.find(review.user_id).username %> - <%= review.rating %> Stars</li>
+ <%end%>
+ </ul>
+</div>
+<br><br>
+
+<div class="cell">
+<%= link_to "Back to Home", users_path %>
+</div>
+</div>
