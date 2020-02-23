@@ -1,21 +1,34 @@
-<div class="float-center text-center">
-<div class="cell">
-<h2>Recent Reviews:</h2>
-</div>
-
-<div class="cell">
-    <ul>
-        <% @coffeees.each do |c| %>
-            <li>
-                <%= link_to c.name, coffeee_path(c) %><br>
-                <%= c.reviews.count %> Reviews
-            </li>
+<div class="cell grid-x grid-padding-x small-12">
+    <div class="cell small-12 medium-4">
+        <h1>Coffee List</h1>
+  </div>
+  <div class="cell small-12 medium-8">
+        <h5>Search By Name</h5>
+        <%= form_tag("/coffee/search", method: "post", :enforce_utf8 => false) do %>
+            <%= text_field_tag "name", params[:name] %>
+            <%= submit_tag 'Search' %>
         <% end %>
-    </ul>
+  </div>
 </div>
-<br><br>
+<div class="cell grid-x grid-padding-x small-12">
+    <div class="cell">
+    <% if params[:name] %>
+        <h5>Search Results</h5>
+        <p><%= link_to "Clear Search", coffeees_path %></p>
+    <%else%>
+    <%end%>
 
-<div class="cell">
-<%= link_to "Back to Home", users_path %>
+        <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+            <% @coffeees.each do |c| %>
+                <%= link_to render(partial: "coffeees/indexcard", locals: {c: c}), coffeee_path(c) %>
+            <%end%>
+        </div>
+    </div>
 </div>
-</div>
+
+<%= render(partial: "layouts/back")%>
+
+    
+
+
+   

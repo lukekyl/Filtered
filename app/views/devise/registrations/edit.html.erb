@@ -1,5 +1,9 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="float-center text-center">
+<div class="cell small-12 medium-8">
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+</div>
 
+<div class="cell">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
 
@@ -19,7 +23,7 @@
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
     <% end %>
-  </div>
+  </div><br>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
@@ -35,9 +39,16 @@
     <%= f.submit "Update" %>
   </div>
 <% end %>
+</div>
+</div>
 
+<div class="cell small-12 medium-4">
+<div class="cell">
 <h3>Cancel my account</h3>
 
 <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
+</div>
+</div>
+<div class="cell small-12">
 <%= link_to "Back", :back %>
+</div>

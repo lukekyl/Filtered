@@ -1,24 +1,41 @@
-
-<div class="float-center text-center">
-<div class="cell">
-<h2><%= @user.username %>'s Profile</h2>
-
+<div class="grid-x grid-padding-x small-12">
+   <div class="cell">
+   <h1><%= @user.username %>'s Profile</h1>
+   </div>
 </div>
 
-<div class="cell">
-<%# Favorite Coffee? %>
+<div class="grid-x grid-padding-x small-12">
+   <div class="cell small-12 medium-2">
+      <h5>Account Info</h5>
+      <p><strong>Email:</strong> <%= @user.email %></p>
+      <p><strong>Username:</strong> <%= @user.username %></p>
+      <p><strong>Admin:</strong> <%= @user.admin.to_s.capitalize %></p>
+      <p><strong># of Reviews:</strong> <%= @user.reviews.count %></p>
+      <p><%= link_to "Edit Profile", edit_user_registration_path %></p>
+   </div>
+   <div class="cell small-12 medium-1"></div>
+   <div class="cell small-12 medium-9">
+      <div class="cell">
+         <%# Favorite Coffee? %>
+         <h5>Your Favorite Coffees</h5>
+         <div class="cell">
+            <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+               <% @favorites.each do |review| %>
+                  <%= link_to render(partial: "users/showcard", locals: {review: review}), coffeee_review_path(review.coffeee_id, review) %>
+               <%end%>
+            </div>
+         </div>   
+         <%# Coffee Review Info %>
+         <h5>Your Recent Reviews</h5>
+         <div class="cell">
+            <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+               <% @user.reviews.last_eight.each do |review| %>
+                  <%= link_to render(partial: "users/showcard", locals: {review: review}), coffeee_review_path(review.coffeee_id, review) %>
+               <%end%>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
 
- <%# Coffee Review Info %>
- <h5>Your Recent Reviews:</h5>
- <ul>
- <% @user.reviews.each do |review| %>
-    <li><%= link_to Coffeee.find(review.coffeee_id).name, coffeee_review_path(review.coffeee_id, review) %></li>
- <%end%>
- </ul>
-</div>
-<br><br>
-
-<div class="cell">
-<%= link_to "Back to Home", users_path %>
-</div>
-</div>
+<%= render(partial: "layouts/back")%>

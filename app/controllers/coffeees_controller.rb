@@ -17,7 +17,12 @@ class CoffeeesController < ApplicationController
     end
 
     def index
-            @coffeees = Coffeee.all
+         if !params[:name].blank?
+            @coffeees = Coffeee.by_name(params[:name])
+         else
+            # if no filters are applied, show last twelve coffees
+            @coffeees = Coffeee.last_twelve
+        end   
     end
 
     def show
@@ -25,11 +30,18 @@ class CoffeeesController < ApplicationController
     end
 
     def edit #admin only
+        @coffeee = Coffeee.find(params[:id])
     end
     def update #admin only
+        @coffeee = Coffeee.find(params[:id])
+        @coffeee.update(coffeee_params)
+        redirect_to coffeee_path(@coffeee)
     end
 
     def destroy #admin only - filter options to delete by not having a review?
+        @coffeee = Coffeee.find(params[:id])
+        @coffeee.destroy
+        redirect_to coffeees_path
     end
 
     private

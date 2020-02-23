@@ -1,7 +1,5 @@
 class ReviewsController < ApplicationController
 
-    def index #admin only
-    end
     
     def new 
         @coffeee = Coffeee.find(params[:coffeee_id])
@@ -25,11 +23,20 @@ class ReviewsController < ApplicationController
     end
 
     def edit #user only
+        @review = Review.find(params[:id])
+        @coffeee = @review.coffeee
     end
     def update #user only
+        @review = Review.find(params[:id])
+        @coffeee = @review.coffeee
+        @review.update(review_params)
+        redirect_to coffeee_path(@coffeee)
     end
 
     def destroy #user/admin only
+        @review = Review.find(params[:id])
+        @review.destroy
+        redirect_to coffeee_path(@review.coffeee)
     end
 
     private

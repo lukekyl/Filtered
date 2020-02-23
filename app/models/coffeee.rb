@@ -24,9 +24,14 @@ class Coffeee < ApplicationRecord
         end
     end
 
-
     #Scope Methods
 
+    def self.by_name(name)
+        where(:name => name)
+    end
 
+    def self.last_twelve
+        last(12).reverse
+    end
 
 end

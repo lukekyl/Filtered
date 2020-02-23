@@ -6,7 +6,12 @@ class Review < ApplicationRecord
 
 
     #Scope Methods
-       
+    def self.by_favorites(favorite)
+        if favorite == "Show Favorites"
+        where(:favorite => true)
+        end
+    end   
+
     def self.by_category(category)
         self.joins(:coffeee).where(:coffeees => {:category => category})
     end

@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "/search" => "users#index"
   match '/search', to: 'users#index', via: 'post'
 
+  get "coffee/search" => "coffeees#index"
+  match 'coffee/search', to: 'coffeees#index', via: 'post'
   # match 'users/search/:by_roast'
   # get 'users/:by_category', to: 'users#index'
   # get 'users/:by_roast', to: 'users#index'

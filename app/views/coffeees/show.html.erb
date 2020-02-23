@@ -1,53 +1,63 @@
-
-<div class="float-center text-center">
-<div class="cell">
-<h2><%= @coffeee.name %></h2>
-<% if @coffeee.brand_id && @coffeee.brand.name != "" %>
-    <h5><%= @coffeee.brand.name %></h5>
-<%else%>
-    <label><strong>Know the coffee brand?</strong></label>
-    <%= form_for @coffeee.build_brand, :html => {"data-abide" => ''} do |b| %>
-        <%= b.hidden_field :coffeee_id, :value => @coffeee.id %>
-        <div class="field input-wrapper">
-            <%= b.text_field :name, list: "brands" , required: true %>
-            <datalist id="brands">
-                <% Brand.all.each do |brand|%>
-                    <option value="<%=brand.name%>">
-                <%end%>
-            </datalist>
-        </div>
-        <div class="field">
-            <%= b.text_field :location %>
-        </div>
-        <div class="actions">
-            <%= b.submit "Add Brand" %>
+<div class="cell grid-x grid-padding-x small-12">
+    <div class="cell">
+        <h2><%= @coffeee.name %></h2>
+    </div>
+    <% if  current_user.admin %>
+        <div class="cell">
+            <p class="green"><strong><%= link_to "Edit Coffee", edit_coffeee_path(@coffeee) %></strong></p>
+            <p class="red"><strong><%= button_to 'Delete Coffee',  coffeee_path(@coffeee),  method: :delete, :class => "delete_button" %></strong></p>
         </div>
     <%end%>
-<%end%>
 </div>
 
-<div class="cell">
- <%# Coffee Info %>
-<p><%= @coffeee.category %></p>
-<p><%= @coffeee.roast %></p>
-<p><%= @coffeee.body %></p>
-<p><%= @coffeee.acidity %></p>
-<br><br>
-<%# Coffee Reviews %>
-<h5>Reviews</h5>
-<ul>
-    <% @coffeee.reviews.each do |review| %>
-        <li><%= link_to "#{current_user.username}'s rating of  #{review.rating} Stars", coffeee_review_path(@coffeee, review) %></li>
+<div class="cell grid-x grid-padding-x small-12">
+    <div class="cell small-12 medium-3">
+    <%# Start Brand Name Form %>
+    <% if @coffeee.brand_id && @coffeee.brand.name != "" %>
+        <h5>Company</h5>
+        <p><strong><%= link_to @coffeee.brand.name, brand_path(@coffeee.brand) %></strong></p>
+    <%else%>
+        <label><strong>Know the brand for this coffee?</strong></label>
+        <%= form_for @coffeee.build_brand, :html => {"data-abide" => ''} do |b| %>
+            <%= b.hidden_field :coffeee_id, :value => @coffeee.id %>
+            <div class="field input-wrapper">
+                <%= b.text_field :name, list: "brands" , required: true %>
+                <datalist id="brands">
+                    <% Brand.all.each do |brand|%>
+                        <option value="<%=brand.name%>">
+                    <%end%>
+                </datalist>
+            </div>
+            <div class="field">
+                <%= b.text_field :location %>
+            </div>
+            <div class="actions">
+                <%= b.submit "Add Brand" %>
+            </div>
+        <%end%>
     <%end%>
-</ul>
-</div>
-<br><br>
-<div class="cell">
-<%= link_to "Leave Review", new_coffeee_review_path(@coffeee) %>
-</div>
-<br><br>
+    <br>
+    <%# End of Brand Name Form %>
+        <h5>Coffee Details</h5>
+        <p><strong>Category: </strong><%= @coffeee.category %></p>
+        <p><strong>Roast: </strong><%= @coffeee.roast %></p>
+        <p><strong>Body: </strong><%= @coffeee.body %></p>
+        <p><strong>Acidity: </strong><%= @coffeee.acidity %></p>
+    </div>
 
-<div class="cell">
-<%= link_to "Back to Home", users_path %>
-</div>
-</div>
+    <div class="cell small-12 medium-9">
+        <%# Coffee Reviews %>
+        <h5> Reviews For This Coffee</h5>
+        <div class="grid-x grid-margin-x small-up-2 medium-up-4">
+            <% @coffeee.reviews.each do |review| %>
+                <%= link_to render(partial: "coffeees/showcard", locals: {review: review}), coffeee_review_path(review.coffeee_id, review) %>
+            <%end%>
+        </div>
+        <div class="cell">
+            <%= link_to "Review This Coffee", new_coffeee_review_path(@coffeee), :class => "button review_button" %>
+        </div>
+    </div>
+</div>  
+
+<%= render(partial: "layouts/back")%>
+
