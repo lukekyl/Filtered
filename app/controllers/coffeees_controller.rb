@@ -40,6 +40,9 @@ class CoffeeesController < ApplicationController
 
     def destroy #admin only - filter options to delete by not having a review?
         @coffeee = Coffeee.find(params[:id])
+        @coffeee.reviews.each do |r|
+            r.destroy
+        end
         @coffeee.destroy
         redirect_to coffeees_path
     end
