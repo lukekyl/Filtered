@@ -29,7 +29,6 @@
         <div class="field">
           <%= c.text_field :name, placeholder: "Required", required: true %>
         </div>
-        
         <div class="field">
           <%= c.select :category, options_for_select(Coffeee::CATEGORIES), include_blank: true %>
         </div>  
@@ -41,6 +40,9 @@
         </div>
         <div class="field">
               <%= c.select :acidity, options_for_select(Coffeee::ACIDITIES), include_blank: true %>
+        </div>
+        <div class="field">
+          <%= c.text_field :imgurl, placeholder: "Add Url For Coffee Image"%>
         </div>
     </div>
     <div class="cell small-12 medium-6">

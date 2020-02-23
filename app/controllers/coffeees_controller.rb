@@ -49,6 +49,6 @@ class CoffeeesController < ApplicationController
 
     private
     def coffeee_params
-        params.require(:coffeee).permit(:name, :category, :roast, :body, :acidity, reviews_attributes: [:user_id, :rating, :style, :recipe, :adatives, :favorite,  :details], brand_attributes: [:name, :location])
+        params.require(:coffeee).permit(:name, :category, :roast, :body, :acidity, :imgurl, reviews_attributes: [:user_id, :rating, :style, :recipe, :adatives, :favorite,  :details], brand_attributes: [:name, :location])
     end
 end

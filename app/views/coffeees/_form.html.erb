@@ -18,6 +18,9 @@
         <div class="field">
               <%= c.select :acidity, options_for_select(Coffeee::ACIDITIES), include_blank: true %>
         </div>
+        <div class="field">
+          <%= c.text_field :imgurl, placeholder: "Add Url For Coffee Image"%>
+        </div>
     </div>
     
     <div class="cell small-12 align-right text-right">

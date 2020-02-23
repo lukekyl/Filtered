@@ -1,6 +1,6 @@
 <div class="cell">
     <div class="card index_card">
-        <img src="https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2124&q=80">
+        <div class="image-section" style="background-image: url('<%= review.coffeee.imgurl %>');"></div>
         <div class="card-section">
             <%= link_to Coffeee.find(review.coffeee_id).name, coffeee_review_path(review.coffeee_id, review) %><br>
             By <%= review.user.username %> - <%= review.rating %> Stars

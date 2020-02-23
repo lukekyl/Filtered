@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2020_02_20_035329) do
     t.string "body"
     t.string "acidity"
     t.string "category"
+    t.string "imgurl", default: "https://images.unsplash.com/photo-1497515114629-f71d768fd07c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2124&q=80"
     t.integer "brand_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
