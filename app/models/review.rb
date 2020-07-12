@@ -2,8 +2,19 @@ class Review < ApplicationRecord
     belongs_to :user
     belongs_to :coffeee, inverse_of: :reviews
     validates :rating, presence: true
+    
 
+    #Helper Methods
 
+    def make_stars
+        if self.rating == 4
+            return "<img class='review-stars' src='images/star.svg'>"
+        end
+    end
+
+    def to_stars
+        self.rating.times {"<img class='review-stars' src='/public/images/star.svg'>"}
+    end
 
     #Scope Methods
     def self.by_favorites(favorite)

@@ -7,7 +7,6 @@ class CoffeeesController < ApplicationController
         @coffeee = Coffeee.create(coffeee_params)
         # raise coffeee_params.inspect
         if @coffeee.save
-
             flash[:green] = "Coffee Was Created!"
             redirect_to coffeee_path(@coffeee)
         else
