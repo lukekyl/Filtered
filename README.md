@@ -5,7 +5,7 @@ An App For Coffee Lovers
 
 
 ## Introduction
-Filtered. is a Ruby on Rails application with the goal of providing users with a database to submit, search, and filter through coffee reviews. Users will be able to review their own favorite coffee beans and brands, view other user's submitted reviews, and filter through the types of coffee by bean category, roast, body, and acidity to find new brands and their perfect cup of joe!
+Filtered is a Ruby on Rails application with the goal of providing users with a database to submit, search, and filter through coffee reviews. Users will be able to review their own favorite coffee beans and brands, view other user's submitted reviews, and filter through the types of coffee by bean category, roast, body, and acidity to find new brands and their perfect cup of joe!
 
 # Technologies
 This application make use of:
