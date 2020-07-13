@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    helper_method :to_stars, :make_stars
 
     def index
         @user = User.find(current_user.id)
@@ -25,4 +26,17 @@ class UsersController < ApplicationController
     end
 
 
+    private
+
+    def make_stars
+        # if self.rating == 4
+        #     "<img class='review-stars' src='images/star.svg'>"
+        # end
+    end
+
+    def to_stars(rating)
+        # render :text => "<img class='review-stars' src='/public/images/star.png'>"
+        # self.rating.times {stars << "<img class='review-stars' src='/public/images/star.svg'>"}
+        # render :inline => stars
+    end
 end

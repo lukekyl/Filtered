@@ -7,7 +7,6 @@ class CoffeeesController < ApplicationController
         @coffeee = Coffeee.create(coffeee_params)
         # raise coffeee_params.inspect
         if @coffeee.save
-
             flash[:green] = "Coffee Was Created!"
             redirect_to coffeee_path(@coffeee)
         else
@@ -18,7 +17,7 @@ class CoffeeesController < ApplicationController
 
     def index
          if !params[:name].blank?
-            @coffeees = Coffeee.by_name(params[:name])
+            @coffeees = Coffeee.where('name LIKE ?', "#{params[:name]}")
          else
             # if no filters are applied, show last twelve coffees
             @coffeees = Coffeee.last_twelve
